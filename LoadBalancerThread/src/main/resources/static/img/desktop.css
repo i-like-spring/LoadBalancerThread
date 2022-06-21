@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'Nanum Gothic';
+    src: url('./font/NanumGothicCoding.ttf');
+}
+@font-face {
+    font-family: 'Yanone';
+    src: url('./font/YanoneKaffeesatz-Regular.ttf');
+}
+html, body {
+    width: 100%; height: 100%;
+}
+body, div, p, ul, ol, li, h1, h2, h3, h4 {
+    padding: 5px;
+    margin: 5px;
+}
+ol,ul, li {
+    list-style: none;
+}
+img {
+    border: none;
+}
+body {
+    font-family: 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #676767;
+    border-top: 7px solid #7cc0cb; /*넓이 스타일 색상*/
+}
+.noVisible {
+    visibility: hidden;
+    /*position: static속성을 가지고 있지 않은 부모를 기준으로 움직인다.
+    만약 부모 중에 포지션이 relative, absolute, fixed인 태그없으면 body기준으로 오른쪽에 붙음*/
+    position: absolute;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    line-height: 0; /*줄의 높이 지정*/
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+#skipNav {
+    display: block;
+    height: 1px;
+    width: 1px;
+    margin: 0 -1px -1px 0; /*top, right, bottom, left*/
+    overflow: hidden; /*visible: 넘칠경우 콘텐츠 상자 밖으로, hidden: 넘치는부분 안보임, scroll: 넘치는 부분 스크롤이동으로 봄*/
+    font-size: 0;
+    line-height: 0;
+}
+/*사용자가 링크위에 마우스 올렸을때 / hover: 마우스올렸을때, active: 링크클릭하는순간, focus: 요소에 초점이 맞춰질때*/
+#skipNav a:hover, #skipNav a:active, #skipNav a:focus {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1;
+    text-decoration: none; /*글자에 선 디자인을 함 line-through: 글자 중간에 선, overline: 글자위에 선, underline:글자아래선*/
+    text-align: center;
+}
+#footer a {
+    color: black;
+    text-decoration: none;
+}
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+#header {
+    width: 100%;
+    margin: 0 auto;
+}
+#logo, #logo a {
+    float: left;
+}
+#menu {
+    z-index: 999; /*z축 제일 앞으로 */
+    float: right;
+    margin: 23px 0 0 0;
+}
+#menu li {
+    display: inline;
+    margin: 0 0 0 20px;
+}
+#menu li a {
+    font-family: 'Yanone', 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    color: #999;
+    text-decoration: none;
+}
+#header:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+#campaign {
+    position: relative;
+}
+/*.caption 은 표 밑에 있는 설명란*/
+#campaign .caption {
+    z-index: 500;
+    position: absolute;
+    bottom: 72px;
+    left: 0;
+    padding: 20px;
+    background: #7cc0cb;
+    background: rgba(124, 192, 203, 0.7); /*rgba(적색, 녹색, 청색, 투명도) 0~255 투명도는 0.0(투명)~1.0(불투명)*/
+    color: #FFF;
+    font-size: 22px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+#campaign img {
+    display: block;
+}
+#footer {
+    padding: 20px 0 15px;
+    margin-top: 70px;
+    background-color: #7cc0cb;
+    font-size: 0.9em; /*브라우저 창 크기에 상관없이 폰트크기가 변함, px은 고정된값*/
+    text-align: center;
+    font-style: normal;
+    color: #fff;
+    clear: both;
+}
+#content:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+/*메뉴에 현재 문서 표시*/
+#menu li.current a {
+    color: #7cc0cb;
+}
+/*타이틀*/
+#contents h1 {
+    color: #888888;
+    font-size: 50px;
+    line-height: 70px;
+    padding:0 0 15px 0;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #cecece;
+    font-family: 'Yanone', 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;
+}
+/*aboutme*/
+.onethird {
+    width: 306px;
+    margin-right: 21px;
+    float: left;
+}
+.last {
+    margin-right: 0;
+    float: right;
+}
+h2 {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+/*추가 css 리셋*/
+img, input, select, textarea, label {
+    vertical-align: middle;
+}
+/*portfolio*/
+.portfolio ul {
+    overflow: hidden;
+    margin-left: -6px;
+}
+.portfolio li {
+    text-align: center;
+    float: left;
+    position: relative;
+    margin: 0 0 6px 6px;
+    padding: 0;
+    background-color: #f4f4f4;
+
+    -moz-box-shadow: 1px 1px 1px #cecece;
+    -webkit-box-shadow: 1px 1px 1px #cecece;
+    box-shadow: 1px 1px 1px #cecece;
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    /*behavior: url("PIE.htc");*/
+}
+.portfolio li img {
+    width: 100%;
+    -moz-border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-top-right: 10px;
+    -webkit-border-top-right-radius: 10px;
+    border-top-right-radius: 10px;
+    /*behavior: url("PIE.htc");*/
+}
+.portfolio li p {
+    padding: 15px;
+    font-weight: bold;
+}
+.progressbar-container {
+    width: 500px;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.progress-value {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    font-size: .875rem;
+    padding-bottom: .25rem;
+}
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    color: #273238;
+}
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 8px;
+}
+progress::-webkit-progress-value {
+    background-color: #273238;
+    border-radius: 8px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #eee;
+    border-radius: 8px;
+}
+.skill-padding {
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+#cert {
+    text-align: center;
+}

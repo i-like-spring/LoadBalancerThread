@@ -1,0 +1,114 @@
+@charset "utf-8";
+@font-face {
+	font-family: 'Nanum Gothic';
+	src: url('./font/NanumGothicCoding.ttf') ;  /*웹폰트 불러오기*/
+}
+@font-face {
+	font-family: 'Yanone';
+	src: url('./font/YanoneKaffeesatz-Regular.ttf') ;  /*웹폰트 불러오기*/
+}
+/*@font-face {*/
+/*  font-family: 'fontello';*/
+/*  src: url('../font/fontello.eot?92193028');*/
+/*  src: url('../font/fontello.eot?92193028#iefix') format('embedded-opentype'),*/
+/*       url('../font/fontello.woff?92193028') format('woff'),*/
+/*       url('../font/fontello.ttf?92193028') format('truetype'),*/
+/*       url('../font/fontello.svg?92193028#fontello') format('svg');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+html, body {
+	width: 100%; height: 100%;
+}
+body, div, p, ul, ol, li, h1, h2, h3, h4 {
+	padding: 0;,
+	margin: 1;
+}
+ol, ul, li {
+	list-style: none;
+}
+img {
+	border: none; 
+}
+body {
+	font-family: 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: #676767;
+}
+.hidden {
+	display: none;
+}
+.noVisible {
+	visibility: hidden;
+	position: absolute;
+	font-size: 0;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+#skipNav a {
+	display:block;  height:1px; width:1px; margin:0 -1px -1px 0; overflow:hidden; font-size:0; line-height:0;
+}
+#skipNav a:hover, #skipNav a:active, #skipNav a:focus {
+	width:100%; height:auto; margin:0; padding:5px; 
+	font-size:12px; line-height:1; text-decoration:none; text-align: center;
+}
+#footer a {
+	color: #fff;
+	text-decoration: none;
+}
+#wrap{width:300px;margin:0 auto;} /*모바일은 통상 가로폭 300으로 잡고 시작*/
+#header{width:100%;padding:30px 0;}
+#logo {text-align:center;}
+#menu li{display:inline;margin: 0 0 0 12px;} /*원래 블록요소였던 것은 인라인요소로 바꿔도 기본요소는 어느정도 가져감. 원래 인라인은 상하여백 조절이 불가함*/
+#menu li:first-child{margin:0;}
+#menu {text-align:center;margin-top:23px;}
+#menu li a {
+	font-family: 'Yanone', 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;  /*불러온 웹폰트 적용*/
+	font-size: 15px;
+	color: #999;
+	text-decoration: none;
+}
+#menu li.current a{color: #7CC0CB;} /* 메뉴에 현재 문서는 파란색으로 표시 */
+#campaign img{
+	max-width:300px; /* 모바일에 맞춰 이미지 사이즈 최대치의 사이즈를 설정. 부모가 되는 wrap에 일치시킴. */
+	height:auto;  /* 위의 사이즈 변경에 따른 높이값도 자동으로 비례 일치시킴 */
+	}
+.onehalf iframe{
+	max-width:300px; /* 모바일에 맞춰 구글맵 iframe 사이즈 최대치의 사이즈를 설정. 부모가 되는 wrap에 일치시킴. */
+    height:auto;
+}
+#footer {
+	padding: 20px 0 15px;
+	margin-top: 70px;
+	background-color: #7CC0CB;
+	font-size: 0.9em;
+	text-align: center;
+	font-style: normal;
+	color: #fff;
+}
+.phone:before {
+	font-family: "fontello";
+	content: '\e804';
+}
+.fax:before{
+	font-family: "fontello";
+	content: '\e803';
+}
+#footer i {margin: 0 5px 0 10px;}
+.skill-padding {
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+#cert {
+	text-align: center;
+	font-size: 15px;
+}
+
+
+

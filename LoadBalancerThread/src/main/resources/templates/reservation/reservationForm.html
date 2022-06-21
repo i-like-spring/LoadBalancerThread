@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>영화관 좌석 배치</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/js@0.0.13/cinema/hacademy-cinema.css">
+    <link rel="stylesheet" type="text/css"  href="/static/img/button.css"/>
+    <link rel="stylesheet" type="text/css"  href="/static/img/tableborder.css"/>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .float-box > div{
+            float:left;
+            width:50%;
+        }
+        .float-box::after{
+            content:"";
+            display: block;
+            clear:both;
+        }
+        .float-box > .result {
+            padding:0.5rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/hiphop5782/js@0.0.13/cinema/hacademy-cinema.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            var cinema = new Hacademy.Reservation("#cinema");
+            cinema.addChangeListener(function(seat){
+                print(this);
+            });
+            print(cinema);
+            function print(app){
+                document.querySelector(".result").textContent = app.getQueryString();
+            }
+        });
+    </script>
+</head>
+<body>
+<h1 align="center">영화 예매하기!</h1>
+<br><br>
+<ul>
+    <ol>-----------------------------------------------</ol>
+    <ol>영화 제목 : 마녀2</ol>
+    <ol>-----------------------------------------------</ol>
+    <ol>좌석 선택은 여러개 가능합니다.</ol>
+    <ol>-----------------------------------------------</ol>
+    <ol>좌석번호는 현재 임의의 수정이 불가</ol>
+    <ol>-----------------------------------------------</ol>
+</ul>
+<br><br>
+<br><br>
+<div class="float-box">
+    <div id="outer-box">
+        <form action="/reservation/new" method="post">
+            <div id="cinema" class="cinema-wrap" data-name="seat">
+                <div class="cinema-seat-area" data-rowsize="3" data-colsize="5" data-mode="client" data-fill="auto" data-seatno="visible"></div>
+            </div>
+            <br><br>
+
+            <input class="w-btn-outline w-btn-gray-outline" type="submit" value="선택">
+        </form>
+    </div>
+
+    <h2 align="center">전송되는 데이터 형태</h2>
+    <div class="result">
+
+    </div>
+</div>
+</body>
+</html>
