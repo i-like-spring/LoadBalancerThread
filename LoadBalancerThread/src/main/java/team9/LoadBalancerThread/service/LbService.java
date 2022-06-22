@@ -1,8 +1,15 @@
 package team9.LoadBalancerThread.service;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Service;
 import team9.LoadBalancerThread.domain.Reservation;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -110,8 +117,24 @@ public class LbService {
     }
     class Consumer extends Thread{
 
+        @Bean
+        public DataSource dataSource() {
+            DataSource ds = new DataSource();
+            ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+            ds.setUrl("jdbc:mysql://localhost/reservationDB?characterEncoding=utf8"); //DB명
+            ds.setUsername("ku_DSC_DB"); //ID
+            ds.setPassword("ku_DSC_DB"); //password
+            ds.setInitialSize(2);
+            ds.setMaxActive(500000);
+            return ds;
+        }
+
+        ReservationDao reservationDao = new ReservationDao(dataSource());
+
         @Override
         public void run() {
+
+
             // TODO Auto-generated method stub
             for(int i=1; i<=TRAFFIC_COUNT/CONSUMER_COUNT; i++) {
                 countInBufferLock.lock();
@@ -123,7 +146,9 @@ public class LbService {
                 // ------------------------
                 Reservation reservation = get();
                 System.out.println(reservation);
-                // 여기서 reservation 객체만 db에 저장해주시면 됩니다.
+
+                reservationDao.insert(reservation);
+
                 // ------------------------
                 producer.signal();
                 if(consumedCount == TRAFFIC_COUNT) mainCondition.signal();
@@ -131,6 +156,32 @@ public class LbService {
             }
         }
 
+    }
+
+    public class ReservationDao {
+
+        private JdbcTemplate jdbcTemplate;
+
+        public ReservationDao(DataSource dataSource) {
+            this.jdbcTemplate = new JdbcTemplate(dataSource);
+        }
+
+        //예매 정보 DB에 삽입
+        public void insert(final Reservation reservation) {
+            jdbcTemplate.update(new PreparedStatementCreator() {
+                @Override
+                public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                    PreparedStatement pstmt = con.prepareStatement(
+                            "insert into RESERVE01 (NAME, BIRTH, PHONENUMBER, SEATNUMBER) " +
+                                    "values (?, ?, ?, ?)");
+                    pstmt.setString(1, reservation.getName());
+                    pstmt.setString(2, reservation.getDateOfBirth());
+                    pstmt.setString(3, reservation.getPhoneNumber());
+                    pstmt.setString(4, reservation.getSeatNumber());
+                    return pstmt;
+                }
+            });
+        }
     }
 
 }

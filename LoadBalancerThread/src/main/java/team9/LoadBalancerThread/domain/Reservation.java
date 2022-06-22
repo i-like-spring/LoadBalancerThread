@@ -35,5 +35,20 @@ public class Reservation {
                 '}';
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getSeatNumber() {
+        return seatNumber;
+    }
 }
 
